@@ -17,7 +17,7 @@ class AnimalFactory
 
   def CrearOveja()
     oveja = @oveja_proto.clone
-    oveja.set_id(@@id)
+    oveja.id = @@id
     @@id += 1
 
     return oveja
@@ -25,12 +25,10 @@ class AnimalFactory
 
   def CrearPerro()
     perro = @perro_proto.clone
-    perro.set_id(@@id)
+    perro.id = @@id
     @@id += 1
 
     return perro
   end
 end
 end
-
-
