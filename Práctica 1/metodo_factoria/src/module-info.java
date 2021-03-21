@@ -1,0 +1,2 @@
+module metodo_factoria {
+}
