@@ -4,13 +4,13 @@
 require_relative "animal.rb"
 
 module Prototipo
-class Oveja < Animal
+class Perro < Animal
   # def initialize(id)
   #   @id = id
   # end
 
   def hablar()
-    puts "Oveja #{@id}: Beeeeee"
+    puts "Perro #{@id}: Guau"
   end
 end
 end
