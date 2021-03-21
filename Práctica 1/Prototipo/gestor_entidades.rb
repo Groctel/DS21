@@ -5,10 +5,20 @@ require_relative "animal_factory.rb"
 
 module Prototipo
 class GestorEntidades
-  def initialize()
-    oveja_proto = OvejaNormal.new(-1)
-    perro_proto = PerroMonstruoso.new(-1)
-    @@factoria    = AnimalFactory.new(oveja_proto, perro_proto)
+  def initialize(oveja, perro)
+    if oveja == 'N'
+      oveja_proto = OvejaNormal.new(-1)
+    elsif oveja == 'M'
+      oveja_proto = OvejaMonstruosa.new(-1)
+    end
+
+    if perro == 'N'
+      perro_proto = PerroNormal.new(-1)
+    elsif perro == 'M'
+      perro_proto = PerroMonstruoso.new(-1)
+    end
+
+    @@factoria = AnimalFactory.new(oveja_proto, perro_proto)
   end
 
   def gestionar(num_animales, num_interacciones)
