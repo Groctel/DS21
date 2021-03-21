@@ -1,8 +1,8 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require_relative "oveja.rb"
-require_relative "perro.rb"
+require_relative "oveja_normal.rb"
+require_relative "perro_normal.rb"
 
 module Prototipo
   hebras = []
@@ -10,9 +10,9 @@ module Prototipo
   6.times {|id|
     hebras << Thread.new {
       if id % 2 == 0
-        animal = Oveja.new(id+1)
+        animal = OvejaNormal.new(id+1)
       else
-        animal = Perro.new(id+1)
+        animal = PerroNormal.new(id+1)
       end
 
         5.times {
