@@ -4,6 +4,10 @@
 module Prototipo
 class Animal
   def initialize(id)
+    set_id(id)
+  end
+
+  def set_id(id)
     @id = id
   end
 
