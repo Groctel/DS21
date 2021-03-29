@@ -25,9 +25,8 @@ private:
 	inline void TransformarAAnulacionTotal      (std::string & mensaje) noexcept;
 
 public:
+	unsigned short     Tolerancia     () const noexcept;
 	TipoTransformacion Transformacion () const noexcept;
-
-	unsigned short Tolerancia () const noexcept;
 
 	void CambiarTolerancia     (const unsigned short nueva) noexcept;
 	void CambiarTransformacion (const TipoTransformacion nueva) noexcept;

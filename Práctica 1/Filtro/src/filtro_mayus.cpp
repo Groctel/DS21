@@ -1,5 +1,15 @@
 #include "filtro_mayus.hpp"
 
+unsigned short FiltroMayus :: Tolerancia () const noexcept
+{
+	return tolerancia;
+}
+
+TipoTransformacion FiltroMayus :: Transformacion () const noexcept
+{
+	return trasformacion;
+}
+
 bool FiltroMayus :: RequiereFiltrado (const std::string & mensaje) const noexcept
 {
 	size_t total_letras     = 0;
@@ -17,11 +27,6 @@ bool FiltroMayus :: RequiereFiltrado (const std::string & mensaje) const noexcep
 	}
 
 	return ((total_mayusculas / total_letras) * 100) > tolerancia;
-}
-
-unsigned short FiltroMayus :: Tolerancia () const noexcept
-{
-	return tolerancia;
 }
 
 void FiltroMayus :: TransformarAMayusculasIniciales (std::string & mensaje) noexcept
@@ -53,11 +58,6 @@ void FiltroMayus :: TransformarATodoEnMinusculas (std::string & mensaje) noexcep
 void FiltroMayus :: TransformarAAnulacionTotal (std::string & mensaje) noexcept
 {
 	mensaje = "";
-}
-
-TipoTransformacion FiltroMayus :: Transformacion () const noexcept
-{
-	return trasformacion;
 }
 
 void FiltroMayus :: CambiarTolerancia (const unsigned short nueva) noexcept

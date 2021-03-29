@@ -50,8 +50,12 @@ $(bin)/practica: $(src)/practica.cpp
 $(bin)/tests: $(makedir)/tests.cpp \
 		$(tst)/jugador_test.hpp $(src)/jugador.o \
 		$(tst)/filtro_test.hpp \
+			$(src)/filtro_colores.o \
 			$(src)/filtro_mayus.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(gtestflags)
+
+$(src)/filtro_colores.o: $(src)/filtro_colores.cpp $(src)/filtro_colores.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(src)/filtro_mayus.o: $(src)/filtro_mayus.cpp $(src)/filtro_mayus.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
