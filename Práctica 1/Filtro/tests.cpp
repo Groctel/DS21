@@ -1,3 +1,4 @@
+#include "filtro_test.hpp"
 #include "jugador_test.hpp"
 
 int main (int argc, char ** argv)

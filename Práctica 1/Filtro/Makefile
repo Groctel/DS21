@@ -48,9 +48,13 @@ $(bin)/practica: $(src)/practica.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(libs)
 
 $(bin)/tests: $(makedir)/tests.cpp \
-		$(tst)/jugador_test.hpp $(src)/jugador.o
+		$(tst)/jugador_test.hpp $(src)/jugador.o \
+		$(tst)/filtro_test.hpp \
+			$(src)/filtro_mayus.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(gtestflags)
+
+$(src)/filtro_mayus.o: $(src)/filtro_mayus.cpp $(src)/filtro_mayus.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(src)/jugador.o: $(src)/jugador.cpp $(src)/jugador.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
