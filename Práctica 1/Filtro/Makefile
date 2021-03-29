@@ -7,10 +7,12 @@
 
 makedir = .
 bin     = $(makedir)/bin
+flt     = $(makedir)/filtros
 src     = $(makedir)/src
 tst     = $(makedir)/tests
 
-CXXFLAGS = -std=c++20 -g -Wall -Wextra -Wpedantic -Wfloat-equal -I$(src)
+includes = -I$(src) -I$(flt)
+CXXFLAGS = -std=c++20 -g -Wall -Wextra -Wpedantic -Wfloat-equal $(includes)
 
 gtest      = /usr/include/gtest/
 gtestlibs  = /usr/lib/libgtest.so
@@ -50,14 +52,14 @@ $(bin)/practica: $(src)/practica.cpp
 $(bin)/tests: $(makedir)/tests.cpp \
 		$(tst)/jugador_test.hpp $(src)/jugador.o \
 		$(tst)/filtro_test.hpp \
-			$(src)/filtro_colores.o \
-			$(src)/filtro_mayus.o
+			$(flt)/filtro_colores.o \
+			$(flt)/filtro_mayus.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(gtestflags)
 
-$(src)/filtro_colores.o: $(src)/filtro_colores.cpp $(src)/filtro_colores.hpp
+$(flt)/filtro_colores.o: $(flt)/filtro_colores.cpp $(flt)/filtro_colores.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(src)/filtro_mayus.o: $(src)/filtro_mayus.cpp $(src)/filtro_mayus.hpp
+$(flt)/filtro_mayus.o: $(flt)/filtro_mayus.cpp $(flt)/filtro_mayus.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(src)/jugador.o: $(src)/jugador.cpp $(src)/jugador.hpp
