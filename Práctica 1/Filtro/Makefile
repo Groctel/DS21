@@ -27,7 +27,7 @@ gtestflags = -I$(gtest) $(gtestlibs) -I$(tst)
 	run \
 	test
 
-all: directories $(bin)/practicas
+all: directories $(bin)/practica
 
 clean:
 	-@rm $(bin)/*
@@ -41,12 +41,16 @@ directories:
 full: all test run
 
 run: all
-	@$(bin)/practicas
+	@$(bin)/practica
 
 test: $(bin)/tests
 	@$(bin)/tests --gtest_color=yes
 
-$(bin)/practica: $(src)/practica.cpp
+$(bin)/practica: $(src)/practica.cpp \
+		$(src)/gestor_filtros.o \
+		$(flt)/filtro_colores.o \
+		$(flt)/filtro_mayus.o \
+		$(src)/jugador.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 $(bin)/tests: $(makedir)/tests.cpp \
