@@ -26,7 +26,7 @@ private:
 public:
 	bool Coloreado () const noexcept;
 
-	void CambiarColoreado (const bool nuevo_estado) noexcept;
+	void NuevoColoreado (const bool nuevo_estado) noexcept;
 	void Filtrar          (std::string & mensaje) noexcept override;
 };
 

@@ -13,19 +13,19 @@ protected:
 
 TEST_F (FiltroMayusTest, TransformacionPorDefecto_MayusculasIniciales)
 {
-	EXPECT_EQ(filtro.Transformacion(), MayusculasIniciales);
+	EXPECT_EQ(filtro.Transformacion(), FiltroMayus::MayusculasIniciales);
 }
 
 TEST_F (FiltroMayusTest, DiferentesTiposDeTransformacion)
 {
-	filtro.CambiarTransformacion(MayusculasIniciales);
-	EXPECT_EQ(filtro.Transformacion(), MayusculasIniciales);
+	filtro.NuevaTransformacion(FiltroMayus::MayusculasIniciales);
+	EXPECT_EQ(filtro.Transformacion(), FiltroMayus::MayusculasIniciales);
 
-	filtro.CambiarTransformacion(TodoEnMinusculas);
-	EXPECT_EQ(filtro.Transformacion(), TodoEnMinusculas);
+	filtro.NuevaTransformacion(FiltroMayus::TodoEnMinusculas);
+	EXPECT_EQ(filtro.Transformacion(), FiltroMayus::TodoEnMinusculas);
 
-	filtro.CambiarTransformacion(AnulacionTotal);
-	EXPECT_EQ(filtro.Transformacion(), AnulacionTotal);
+	filtro.NuevaTransformacion(FiltroMayus::AnulacionTotal);
+	EXPECT_EQ(filtro.Transformacion(), FiltroMayus::AnulacionTotal);
 }
 
 TEST_F (FiltroMayusTest, MensajeEnMinusculas_NoHayModificaciones)
@@ -42,14 +42,14 @@ TEST_F (FiltroMayusTest, MensajeEnMayusculas_MayusculasIniciales_DejaSoloLasPrim
 
 TEST_F (FiltroMayusTest, MensajeEnMayusculas_TodoEnMinusculas_TodoEnMinusculas)
 {
-	filtro.CambiarTransformacion(TodoEnMinusculas);
+	filtro.NuevaTransformacion(FiltroMayus::TodoEnMinusculas);
 	filtro.Filtrar(mayusculas);
 	EXPECT_EQ(mayusculas, "buenos dias amigos");
 }
 
 TEST_F (FiltroMayusTest, MensajeEnMayusculas_AnulacionTotal_EliminaElMensaje)
 {
-	filtro.CambiarTransformacion(AnulacionTotal);
+	filtro.NuevaTransformacion(FiltroMayus::AnulacionTotal);
 	filtro.Filtrar(mayusculas);
 	EXPECT_EQ(mayusculas, "");
 }
@@ -61,13 +61,13 @@ TEST_F (FiltroMayusTest, ToleranciaInicial_90)
 
 TEST_F (FiltroMayusTest, PonerLaToleranciaAl50_Devuelve50)
 {
-	filtro.CambiarTolerancia(50);
+	filtro.NuevaTolerancia(50);
 	EXPECT_EQ(filtro.Tolerancia(), 50);
 }
 
 TEST_F (FiltroMayusTest, MayorNumeroDeMayusculasQueTolerancia_EsTransformado)
 {
-	filtro.CambiarTransformacion(TodoEnMinusculas);
+	filtro.NuevaTransformacion(FiltroMayus::TodoEnMinusculas);
 	filtro.Filtrar(mayusculas);
 
 	EXPECT_EQ(mayusculas, minusculas);
@@ -77,7 +77,7 @@ TEST_F (FiltroMayusTest, MenorNumeroDeMayusculasQueTolerancia_EsTransformado)
 {
 	std::string mensaje = "BuEnOs DiAs AmIgOs";
 
-	filtro.CambiarTransformacion(TodoEnMinusculas);
+	filtro.NuevaTransformacion(FiltroMayus::TodoEnMinusculas);
 	filtro.Filtrar(mensaje);
 
 	EXPECT_EQ(mensaje, "BuEnOs DiAs AmIgOs");
@@ -105,7 +105,7 @@ TEST_F (FiltroColoresTest, PorDefectoSiempreColorea)
 
 TEST_F (FiltroColoresTest, PuedeDejarDeColorear)
 {
-	filtro.CambiarColoreado(false);
+	filtro.NuevoColoreado(false);
 	EXPECT_FALSE(filtro.Coloreado());
 }
 

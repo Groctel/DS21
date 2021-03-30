@@ -5,7 +5,7 @@ unsigned short FiltroMayus :: Tolerancia () const noexcept
 	return tolerancia;
 }
 
-TipoTransformacion FiltroMayus :: Transformacion () const noexcept
+FiltroMayus::TipoTransformacion FiltroMayus :: Transformacion () const noexcept
 {
 	return trasformacion;
 }
@@ -60,12 +60,12 @@ void FiltroMayus :: TransformarAAnulacionTotal (std::string & mensaje) noexcept
 	mensaje = "";
 }
 
-void FiltroMayus :: CambiarTolerancia (const unsigned short nueva) noexcept
+void FiltroMayus :: NuevaTolerancia (const unsigned short nueva) noexcept
 {
 	tolerancia = std::min(nueva, (unsigned short) 100);
 }
 
-void FiltroMayus :: CambiarTransformacion (const TipoTransformacion nueva) noexcept
+void FiltroMayus :: NuevaTransformacion (const TipoTransformacion nueva) noexcept
 {
 	trasformacion = nueva;
 }

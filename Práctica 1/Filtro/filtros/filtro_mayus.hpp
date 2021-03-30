@@ -5,15 +5,16 @@
 #include <stdexcept>
 #include "filtro.hpp"
 
-enum TipoTransformacion
-{
-	MayusculasIniciales,
-	TodoEnMinusculas,
-	AnulacionTotal
-};
-
 class FiltroMayus : public Filtro
 {
+public:
+	enum TipoTransformacion
+	{
+		MayusculasIniciales,
+		TodoEnMinusculas,
+		AnulacionTotal
+	};
+
 private:
 	unsigned short tolerancia = 90;
 	TipoTransformacion trasformacion = MayusculasIniciales;
@@ -28,9 +29,9 @@ public:
 	unsigned short     Tolerancia     () const noexcept;
 	TipoTransformacion Transformacion () const noexcept;
 
-	void CambiarTolerancia     (const unsigned short nueva) noexcept;
-	void CambiarTransformacion (const TipoTransformacion nueva) noexcept;
-	void Filtrar               (std::string & mensaje) noexcept override;
+	void NuevaTolerancia     (const unsigned short nueva) noexcept;
+	void NuevaTransformacion (const TipoTransformacion nueva) noexcept;
+	void Filtrar             (std::string & mensaje) noexcept override;
 };
 
 #endif

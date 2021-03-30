@@ -32,7 +32,7 @@ bool FiltroColores :: Coloreado () const noexcept
 	return coloreado;
 }
 
-void FiltroColores :: CambiarColoreado (const bool nuevo_estado) noexcept
+void FiltroColores :: NuevoColoreado (const bool nuevo_estado) noexcept
 {
 	coloreado = nuevo_estado;
 }
