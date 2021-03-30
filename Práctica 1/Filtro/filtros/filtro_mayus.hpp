@@ -16,22 +16,28 @@ public:
 	};
 
 private:
-	unsigned short tolerancia = 90;
-	TipoTransformacion trasformacion = MayusculasIniciales;
+	unsigned short     tolerancia     = 90;
+	TipoTransformacion transformacion = MayusculasIniciales;
 
 	bool RequiereFiltrado (const std::string & mensaje) const noexcept;
+
+	inline std::string ExtraerComandos  (const std::string & mensaje) const noexcept;
+	inline std::string ExtraerContenido (const std::string & mensaje) const noexcept;
 
 	inline void TransformarAMayusculasIniciales (std::string & mensaje) noexcept;
 	inline void TransformarATodoEnMinusculas    (std::string & mensaje) noexcept;
 	inline void TransformarAAnulacionTotal      (std::string & mensaje) noexcept;
 
 public:
+	FiltroMayus (
+		const unsigned short     m_tolerancia     = 90,
+		const TipoTransformacion m_transformacion = MayusculasIniciales
+	) noexcept;
+
 	unsigned short     Tolerancia     () const noexcept;
 	TipoTransformacion Transformacion () const noexcept;
 
-	void NuevaTolerancia     (const unsigned short nueva) noexcept;
-	void NuevaTransformacion (const TipoTransformacion nueva) noexcept;
-	void Filtrar             (std::string & mensaje) noexcept override;
+	void Filtrar (std::string & mensaje) noexcept override;
 };
 
 #endif

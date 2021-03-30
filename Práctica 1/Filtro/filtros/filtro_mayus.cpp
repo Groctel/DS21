@@ -1,15 +1,5 @@
 #include "filtro_mayus.hpp"
 
-unsigned short FiltroMayus :: Tolerancia () const noexcept
-{
-	return tolerancia;
-}
-
-FiltroMayus::TipoTransformacion FiltroMayus :: Transformacion () const noexcept
-{
-	return trasformacion;
-}
-
 bool FiltroMayus :: RequiereFiltrado (const std::string & mensaje) const noexcept
 {
 	size_t total_letras     = 0;
@@ -26,7 +16,26 @@ bool FiltroMayus :: RequiereFiltrado (const std::string & mensaje) const noexcep
 		}
 	}
 
-	return ((total_mayusculas / total_letras) * 100) > tolerancia;
+	return (((double) total_mayusculas / (double) total_letras) * 100) > tolerancia;
+}
+
+std::string FiltroMayus :: ExtraerComandos (const std::string & mensaje) const noexcept
+{
+	std::string comandos = mensaje;
+	size_t pos_separador = comandos.find_last_of(":");
+
+	if (pos_separador != std::string::npos)
+		comandos.erase(pos_separador+1, comandos.length()-pos_separador-1);
+	else
+		comandos = "";
+
+	return comandos;
+}
+
+std::string FiltroMayus :: ExtraerContenido (const std::string & mensaje) const noexcept
+{
+	std::string contenido = mensaje;
+	return contenido.erase(0, contenido.find_last_of(":")+1);
 }
 
 void FiltroMayus :: TransformarAMayusculasIniciales (std::string & mensaje) noexcept
@@ -60,33 +69,47 @@ void FiltroMayus :: TransformarAAnulacionTotal (std::string & mensaje) noexcept
 	mensaje = "";
 }
 
-void FiltroMayus :: NuevaTolerancia (const unsigned short nueva) noexcept
+FiltroMayus :: FiltroMayus (
+	const unsigned short m_tolerancia,
+	const TipoTransformacion m_transformacion
+) noexcept
+:
+	tolerancia     (m_tolerancia),
+	transformacion (m_transformacion)
+{ }
+
+unsigned short FiltroMayus :: Tolerancia () const noexcept
 {
-	tolerancia = std::min(nueva, (unsigned short) 100);
+	return tolerancia;
 }
 
-void FiltroMayus :: NuevaTransformacion (const TipoTransformacion nueva) noexcept
+FiltroMayus::TipoTransformacion FiltroMayus :: Transformacion () const noexcept
 {
-	trasformacion = nueva;
+	return transformacion;
 }
 
 void FiltroMayus :: Filtrar (std::string & mensaje) noexcept
 {
-	if (RequiereFiltrado(mensaje))
+	std::string comandos  = ExtraerComandos(mensaje);
+	std::string contenido = ExtraerContenido(mensaje);
+
+	if (RequiereFiltrado(contenido))
 	{
-		switch (trasformacion)
+		switch (transformacion)
 		{
 			case MayusculasIniciales:
-				TransformarAMayusculasIniciales(mensaje);
+				TransformarAMayusculasIniciales(contenido);
 			break;
 
 			case TodoEnMinusculas:
-				TransformarATodoEnMinusculas(mensaje);
+				TransformarATodoEnMinusculas(contenido);
 			break;
 
 			case AnulacionTotal:
-				TransformarAAnulacionTotal(mensaje);
+				TransformarAAnulacionTotal(contenido);
 			break;
 		}
 	}
+
+	mensaje = comandos + contenido;
 }

@@ -2,13 +2,15 @@
 
 std::set<Jugador *> Jugador :: conectados;
 
-Jugador :: Jugador () noexcept
-{ }
-
-Jugador :: Jugador (const std::string nom) noexcept
+Jugador :: Jugador (const std::string m_nombre) noexcept
 :
-	nombre (nom)
-{ }
+	nombre (m_nombre)
+{
+	preferencias = new PrefFiltro {
+		true,
+		true, {90, FiltroMayus::MayusculasIniciales}
+	};
+}
 
 Jugador :: ~Jugador () noexcept
 { }
@@ -39,6 +41,11 @@ std::string Jugador :: SiguienteMensaje ()
 	return mensaje;
 }
 
+PrefFiltro * Jugador :: Preferencias () noexcept
+{
+	return preferencias;
+}
+
 void Jugador :: Conectar () noexcept
 {
 	conectados.insert(this);
@@ -57,10 +64,9 @@ void Jugador :: EnviarMensaje (const std::string mensaje) noexcept
 
 void Jugador :: RecibirMensaje (const std::string mensaje) noexcept
 {
-	mensajes_pendientes.push(mensaje);
-}
+	std::string mensaje_final = mensaje;
 
-void Jugador :: Renombrar (const std::string nuevo_nombre) noexcept
-{
-	nombre = nuevo_nombre;
+	GestorFiltros gestor(preferencias);
+	gestor.Filtrar(mensaje_final);
+	mensajes_pendientes.push(mensaje_final);
 }

@@ -1,5 +1,10 @@
 #include "filtro_colores.hpp"
 
+FiltroColores :: FiltroColores (const bool m_coloreado) noexcept
+:
+	coloreado (m_coloreado)
+{ }
+
 bool FiltroColores :: ContieneColor (std::string & mensaje) const noexcept
 {
 	return std::regex_search(mensaje, std::regex("^.*:"));
@@ -30,11 +35,6 @@ void FiltroColores :: SustituirPorColor (std::string & mensaje) noexcept
 bool FiltroColores :: Coloreado () const noexcept
 {
 	return coloreado;
-}
-
-void FiltroColores :: NuevoColoreado (const bool nuevo_estado) noexcept
-{
-	coloreado = nuevo_estado;
 }
 
 void FiltroColores :: Filtrar (std::string & mensaje) noexcept

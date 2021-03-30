@@ -16,18 +16,17 @@
 class FiltroColores : public Filtro
 {
 private:
-	bool coloreado = true;
+	bool coloreado;
 
-	bool ContieneColor (std::string & mensaje) const noexcept;
-
+	bool ContieneColor     (std::string & mensaje) const noexcept;
 	void EliminarColor     (std::string & mensaje) noexcept;
 	void SustituirPorColor (std::string & mensaje) noexcept;
 
 public:
-	bool Coloreado () const noexcept;
+	FiltroColores (const bool m_coloreado = true) noexcept;
 
-	void NuevoColoreado (const bool nuevo_estado) noexcept;
-	void Filtrar          (std::string & mensaje) noexcept override;
+	bool Coloreado () const noexcept;
+	void Filtrar   (std::string & mensaje) noexcept override;
 };
 
 #endif

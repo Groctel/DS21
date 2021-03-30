@@ -1,3 +1,4 @@
+#include "gestor_filtros_test.hpp"
 #include "filtro_test.hpp"
 #include "jugador_test.hpp"
 

@@ -10,40 +10,15 @@ protected:
 	Jugador jugador;
 };
 
-class JugadorBroadcastTest : public testing::Test
-{
-protected:
-	const std::string mensaje = "Bienvenido, jugador. o7";
-
-	Jugador jugador1;
-	Jugador jugador2;
-	Jugador jugador3;
-	Jugador jugador4;
-
-	void SetUp () override
-	{
-		jugador1.Conectar();
-		jugador2.Conectar();
-		jugador3.Conectar();
-		jugador4.Conectar();
-	}
-};
-
 TEST_F (JugadorTest, PorDefectoSeLlamaPlayer)
 {
 	EXPECT_EQ(jugador.Nombre(), "Player");
 }
 
-TEST_F (JugadorTest, LePongoDeNombrePepe_SeLlamaPepe)
-{
-	jugador.Renombrar("Pepe");
-	EXPECT_EQ(jugador.Nombre(), "Pepe");
-}
-
 TEST_F (JugadorTest, LoLlamoAntonioAlConstruirlo_SeLlamaAntonio)
 {
-	Jugador nuevo("Antonio");
-	EXPECT_EQ(nuevo.Nombre(), "Antonio");
+	Jugador nuevo("Pepe");
+	EXPECT_EQ(nuevo.Nombre(), "Pepe");
 }
 
 TEST_F (JugadorTest, EmpiezaSinMensajesPendientes)
@@ -106,6 +81,25 @@ TEST_F (JugadorTest, PuedeDesconectarseVariasVecesIdempotentemente)
 	jugador.Desconectar();
 	EXPECT_FALSE(jugador.Conectado());
 }
+
+class JugadorBroadcastTest : public testing::Test
+{
+protected:
+	const std::string mensaje = "Bienvenido, jugador. o7";
+
+	Jugador jugador1;
+	Jugador jugador2;
+	Jugador jugador3;
+	Jugador jugador4;
+
+	void SetUp () override
+	{
+		jugador1.Conectar();
+		jugador2.Conectar();
+		jugador3.Conectar();
+		jugador4.Conectar();
+	}
+};
 
 TEST_F (JugadorBroadcastTest, EnviaUnMensaje_LoRecibeDeVuelta)
 {
