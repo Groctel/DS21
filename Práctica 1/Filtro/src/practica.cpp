@@ -2,19 +2,19 @@
 #include <vector>
 #include "jugador.hpp"
 
-int main ()
+size_t LeerNumeroJugadores ()
 {
-	int num_jugadores;
-	std::vector<Jugador *> jugadores;
+	size_t num_jugadores;
 
 	std::cout << "Indique el número de jugadores [2-5]: ";
 	std::cin  >> num_jugadores;
 
-	num_jugadores = std::min(num_jugadores, 5);
+	return std::min(num_jugadores, (size_t) 5);
+}
 
-	jugadores.resize(num_jugadores);
-
-	for (int i = 0; i < num_jugadores; i++)
+void CrearJugadores (std::vector<Jugador *> & jugadores)
+{
+	for (size_t i = 0; i < jugadores.size(); i++)
 	{
 		std::string nombre;
 
@@ -38,10 +38,22 @@ int main ()
 			std::cin  >> preferencias->pref_mayus.tolerancia;
 		}
 	}
+}
 
+void ConectarJugadores (std::vector<Jugador *> & jugadores)
+{
 	for (auto it = jugadores.begin(); it != jugadores.end(); ++it)
 		(*it)->Conectar();
+}
 
+void DesconectarJugadores (std::vector<Jugador *> & jugadores)
+{
+	for (auto it = jugadores.begin(); it != jugadores.end(); ++it)
+		(*it)->Desconectar();
+}
+
+void ReproducirChat (std::vector<Jugador *> & jugadores)
+{
 	std::string mensaje;
 
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -63,6 +75,16 @@ int main ()
 		std::cout << std::endl << "Escriba otro mensaje." << std::endl << "> ";
 		std::getline(std::cin, mensaje);
 	}
+}
+
+int main ()
+{
+	std::vector<Jugador *> jugadores(LeerNumeroJugadores());
+
+	CrearJugadores(jugadores);
+	ConectarJugadores(jugadores);
+	ReproducirChat(jugadores);
+	DesconectarJugadores(jugadores);
 
 	for (auto it = jugadores.begin(); it != jugadores.end(); ++it)
 		delete *it;
