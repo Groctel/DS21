@@ -1,8 +1,8 @@
 package metodo_factoria;
 
 public interface AnimalFactory {
-	void crearGranja();
-	void crearOveja();
-	void crearPerro();
+	Granja crearGranja();
+	Animal crearOveja();
+	Animal crearPerro();
 }
 

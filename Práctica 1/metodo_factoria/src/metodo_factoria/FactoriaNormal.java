@@ -1,16 +1,22 @@
 package metodo_factoria;
 
 public class FactoriaNormal implements AnimalFactory {
-	public void crearGranja() {
+	public GranjaNormal crearGranja() {
 		GranjaNormal granjita = new GranjaNormal();
 		granjita.ProducirGranja();
+		
+		return granjita;
 	}
-	public void crearOveja() {
+	public OvejaNormal crearOveja() {
 		OvejaNormal ovejita = new OvejaNormal();
 		ovejita.ProducirAnimal();
+		
+		return ovejita;
 	}
-	public void crearPerro() {
+	public PerroNormal crearPerro() {
 		PerroNormal perrito = new PerroNormal();
 		perrito.ProducirAnimal();
+		
+		return perrito;
 	}
 }

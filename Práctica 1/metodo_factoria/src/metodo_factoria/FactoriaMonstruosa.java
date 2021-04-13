@@ -1,16 +1,22 @@
 package metodo_factoria;
 
 public class FactoriaMonstruosa {
-	public void crearGranja() {
+	public GranjaMonstruosa crearGranja() {
 		GranjaMonstruosa granjita = new GranjaMonstruosa();
 		granjita.ProducirGranja();
+		
+		return granjita;
 	}
-	public void crearOveja() {
+	public OvejaMonstruosa crearOveja() {
 		OvejaMonstruosa ovejita = new OvejaMonstruosa();
 		ovejita.ProducirAnimal();
+		
+		return ovejita;
 	}
-	public void crearPerro() {
+	public PerroMonstruoso crearPerro() {
 		PerroMonstruoso perrito = new PerroMonstruoso();
 		perrito.ProducirAnimal();
+		
+		return perrito;
 	}
 }
