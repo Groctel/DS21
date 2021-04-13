@@ -27,9 +27,9 @@ class GestorEntidades
     num_animales.times {|id|
       hebras << Thread.new {
         if id % 2 == 0
-          animal = @@factoria.CrearOveja()
+          animal = @@factoria.crear_oveja()
         else
-          animal = @@factoria.CrearPerro()
+          animal = @@factoria.crear_perro()
         end
 
         num_interacciones.times {
