@@ -1,0 +1,40 @@
+\documentclass[10pt, a4paper]{aqademic}
+
+\usepackage[spanish]{babel}
+	\selectlanguage{spanish}
+
+% Document packages
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[type=CC, modifier=by-nc-sa, version=4.0]{doclicense}
+\usepackage{graphicx}
+	\graphicspath{{img/}}
+
+% Document settings
+
+\author{Romero Lara, Rubio Gil}
+\title{Desarrolo de Software}
+
+\AqSetChapter{Práctica}
+
+% Document composition
+
+\begin{document}
+
+\AqMaketitle[%
+	author   = Clara María Romero Lara{,} Atanasio José Rubio Gil,
+	cover    = logo-ugr.png,
+	org      = Grado en Ingeniería Informática,
+	subtitle = Prácticas,
+	url      = https://github.com/Groctel/DS21
+]
+\tableofcontents
+
+\chapter{Patrones de diseño}
+\input{Práctica 1/Memoria/Filtro.tex}
+\input{Práctica 1/Memoria/MetodoFactoria.tex}
+\input{Práctica 1/Memoria/Observador.tex}
+\input{Práctica 1/Memoria/Prototipo.tex}
+
+\end{document}

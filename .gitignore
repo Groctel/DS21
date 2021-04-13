@@ -6,3 +6,10 @@ bin/
 
 *.class
 *.o
+
+*.aux
+*.log
+*.o
+*.out
+*.pdf
+*.toc
